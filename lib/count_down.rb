@@ -39,11 +39,11 @@ class CountDown
       @answer = answer_text
       @found = true
     elsif @list.size > 2
-      next_node(first,second,answer,answer_text)
+      next_level(first,second,answer,answer_text)
     end
   end
 
-  def next_node(first,second,answer,answer_text)
+  def next_level(first,second,answer,answer_text)
     list = @list.dup
     list.delete(first)
     list.delete(second)
