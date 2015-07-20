@@ -13,12 +13,12 @@ class CountDown
   def try_all_combinations
     @next_level = []
     @list.combination(2).to_a.each do |args|
-      args = args.sort.reverse
-      try(args[0], :/, args[1]  ) unless ( args[0] == 0 &&
+      first,second = args.sort.reverse
+      try(first, :/, second) unless ( args[0] == 0 &&
                                            args[0] % args[1] != 0 )
-      try(args[0], :* , args[1] )
-      try(args[0], :+ , args[1] )
-      try(args[0], :- , args[1] )
+      try(first, :* , second )
+      try(first, :+ , second )
+      try(first, :- , second )
       return @found if @found == true
     end
     if @found == false
