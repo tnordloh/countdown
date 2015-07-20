@@ -14,12 +14,12 @@ class CountDown
     @next_level = []
     @list.combination(2).to_a.each do |args|
       first,second = args.sort.reverse
-      try(first, :/, second) unless ( args[0] == 0 &&
-                                           args[0] % args[1] != 0 )
-      try(first, :* , second )
-      try(first, :+ , second )
-      try(first, :- , second )
-      return @found if @found == true
+      try(first, :/, second) unless ( second == 0 ||
+                                           first % second != 0 )
+      [:*, :+, :-].each do |operator|
+        try(first, operator , second )
+      end
+      return if @found == true
     end
     if @found == false
       @next_level.each do |cd|
