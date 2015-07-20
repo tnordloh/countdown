@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/count_down.rb'
+
+p ARGV
+
+c = CountDown.new(*ARGV.map() {|x| x.to_i })
+
+p c.answer
