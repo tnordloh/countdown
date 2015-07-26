@@ -36,17 +36,6 @@ class CountDown
     end
   end
 
-  def try(first,operator,second)
-    answer = first.send(operator,second)
-    answer_text = "#{first} #{operator.to_s} #{second} = #{answer}"
-    if answer == @goal
-      @answer = answer_text
-      @found = true
-    elsif @list.size > 2
-      next_node(first,second,answer,answer_text)
-    end
-  end
-
   def next_node(first,second,answer,answer_text)
     list = @list.dup
     list.delete(first)
