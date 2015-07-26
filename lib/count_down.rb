@@ -4,8 +4,8 @@ class CountDown
   def initialize(goal, *list,previous: "")
     @goal = goal
     @list = list
-    @found = false
     @previous = previous
+    @found = false
     @next_level = []
   end
 
@@ -20,18 +20,13 @@ class CountDown
         @answer = results[@goal]
         return
       else
-        results.each do |key,value|
-          create_node(args[0],args[1],key,value)
-        end
+        results.each { |key,value| create_node(args[0],args[1],key,value) }
       end
     end
-    if @found == false
-      @next_level.each do |cd|
-        if cd.found?
-          @found = true
-          @answer = cd.previous + cd.answer
-          return true
-        end
+    @next_level.each do |cd|
+      if cd.found?
+        @found = true
+        @answer = cd.previous + cd.answer
       end
     end
   end
