@@ -5,7 +5,6 @@ class CountDown
     @goal = goal
     @list = list
     @previous = previous
-    @found = false
     @next_level = []
   end
 
@@ -16,19 +15,19 @@ class CountDown
     @list.combination(2).to_a.each do |args|
       results = Results.new(*args).answers
       if(results[@goal])
-        @found = true
         @answer = results[@goal]
-        return
+        return true
       else
         results.each { |key,value| create_node(args[0],args[1],key,value) }
       end
     end
     @next_level.each do |cd|
       if cd.found?
-        @found = true
         @answer = cd.previous + cd.answer
+        return true
       end
     end
+    return false
   end
 
   def create_node(first,second,answer,answer_text)
@@ -41,7 +40,6 @@ class CountDown
 
   def found?
     try_all_combinations
-    @found
   end
 
   def answer

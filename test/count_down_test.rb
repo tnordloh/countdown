@@ -14,6 +14,6 @@ describe CountDown do
     CountDown.new(1,2,1).answer.must_equal("2 - 1 = 1")
     CountDown.new(10,4,1,2).found?.must_equal(true)
     CountDown.new(10,4,1,2).answer.must_equal("4 + 1 = 5,5 * 2 = 10")
-    CountDown.new(13,4,1,2,3).answer.must_equal("2 - 1 = 1,4 * 3 = 12,12 + 1 = 13")
+    CountDown.new(13,4,1,2,3).answer.must_equal("4 + 1 = 5,5 * 2 = 10,10 + 3 = 13")
   end
 end
