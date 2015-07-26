@@ -1,3 +1,4 @@
+require_relative 'results'
 class CountDown
   POSSIBLE_ARGUMENTS = :divmod,:+,:-,:/,:*
   def initialize(goal, *list,previous: "")
@@ -13,13 +14,16 @@ class CountDown
   def try_all_combinations
     @next_level = []
     @list.combination(2).to_a.each do |args|
-      first,second = args.sort.reverse
-      try(first, :/, second) unless ( second == 0 ||
-                                           first % second != 0 )
-      [:*, :+, :-].each do |operator|
-        try(first, operator , second )
+      results = Results.new(*args).answers
+      if(results[@goal])
+        @found = true
+        @answer = results[@goal]
+        return
+      else
+        results.each do |key,value|
+          next_node(args[0],args[1],key,value)
+        end
       end
-      return if @found == true
     end
     if @found == false
       @next_level.each do |cd|
@@ -39,11 +43,11 @@ class CountDown
       @answer = answer_text
       @found = true
     elsif @list.size > 2
-      next_level(first,second,answer,answer_text)
+      next_node(first,second,answer,answer_text)
     end
   end
 
-  def next_level(first,second,answer,answer_text)
+  def next_node(first,second,answer,answer_text)
     list = @list.dup
     list.delete(first)
     list.delete(second)
