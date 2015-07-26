@@ -21,7 +21,7 @@ class CountDown
         return
       else
         results.each do |key,value|
-          next_node(args[0],args[1],key,value)
+          create_node(args[0],args[1],key,value)
         end
       end
     end
@@ -36,7 +36,7 @@ class CountDown
     end
   end
 
-  def next_node(first,second,answer,answer_text)
+  def create_node(first,second,answer,answer_text)
     list = @list.dup
     list.delete(first)
     list.delete(second)
