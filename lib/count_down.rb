@@ -5,23 +5,33 @@ class CountDown
     @goal = goal
     @list = list
     @previous = previous
-    @next_level = []
   end
 
   attr_reader :previous
 
   def try_all_combinations
-    @next_level = []
+    child_nodes = []
     @list.combination(2).to_a.each do |args|
       results = Results.new(*args).answers
       if(results[@goal])
         @answer = results[@goal]
         return true
       else
-        results.each { |key,value| create_node(args[0],args[1],key,value) }
+        create_children(args[0],args[1],results)
+            .inject(child_nodes,:<<)
       end
     end
-    @next_level.each do |cd|
+    try_next_level(child_nodes)
+  end
+
+  def create_children(first,second,results)
+    results.each_with_object([]) do |(key, value), child_nodes| 
+      child_nodes << [create_node(first, second, key, value)]
+    end.flatten
+  end
+
+  def try_next_level(child_nodes)
+    child_nodes.each do |cd|
       if cd.found?
         @answer = cd.previous + cd.answer
         return true
@@ -35,7 +45,7 @@ class CountDown
     list.delete(first)
     list.delete(second)
     list << answer
-    @next_level << self.class.new(@goal, *list, previous: answer_text + ",")
+    self.class.new(@goal, *list, previous: answer_text + ",")
   end
 
   def found?

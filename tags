@@ -1,0 +1,18 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CountDown	lib/count_down.rb	/^class CountDown$/;"	c
+Results	lib/results.rb	/^class Results$/;"	c
+answer	lib/count_down.rb	/^  def answer$/;"	f	class:CountDown.create_children
+answers	lib/results.rb	/^  def answers$/;"	f	class:Results
+create_children	lib/count_down.rb	/^  def create_children(first,second,results)$/;"	f	class:CountDown
+create_node	lib/count_down.rb	/^  def create_node(first,second,answer,answer_text)$/;"	f	class:CountDown.create_children
+found?	lib/count_down.rb	/^  def found?$/;"	f	class:CountDown.create_children
+initialize	lib/count_down.rb	/^  def initialize(goal, *list,previous: "")$/;"	f	class:CountDown
+initialize	lib/results.rb	/^  def initialize(first,second)$/;"	f	class:Results
+try	lib/results.rb	/^  def try(first,operator,second)$/;"	f	class:Results
+try_all_combinations	lib/count_down.rb	/^  def try_all_combinations$/;"	f	class:CountDown
+try_next_level	lib/count_down.rb	/^  def try_next_level(child_nodes)$/;"	f	class:CountDown.create_children

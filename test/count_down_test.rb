@@ -16,4 +16,10 @@ describe CountDown do
     CountDown.new(10,4,1,2).answer.must_equal("4 + 1 = 5,5 * 2 = 10")
     CountDown.new(13,4,1,2,3).answer.must_equal("4 + 1 = 5,5 * 2 = 10,10 + 3 = 13")
   end
+
+  it "creates children" do
+    cd = CountDown.new(1,2,3,4)
+    h = { 10 => "whatever"}
+    cd.create_children(5,2,h).first.previous.must_equal("whatever,")
+  end
 end
